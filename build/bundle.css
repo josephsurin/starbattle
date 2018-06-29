@@ -1,0 +1,30 @@
+.puzzle-board {
+  width: 650px;
+  height: 650px;
+  background-color: #fbfbfb;
+  border: 4px solid #a5a5a5;
+  display: grid; }
+  .puzzle-board .puzzle-piece {
+    background-color: #fbfbfb;
+    border: 1px solid #d8d8d8;
+    text-align: center; }
+    .puzzle-board .puzzle-piece .top-space {
+      width: 100%;
+      height: 33%; }
+    .puzzle-board .puzzle-piece:hover {
+      cursor: pointer;
+      background-color: #d5d5d5; }
+  .puzzle-board .bLeft {
+    border-left: 4px solid #a5a5a5; }
+  .puzzle-board .bUp {
+    border-top: 4px solid #a5a5a5; }
+
+html, body {
+  color: #141414;
+  font-family: 'Lato';
+  margin: 0;
+  padding: 0; }
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none; }

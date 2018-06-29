@@ -1,0 +1,1 @@
+export const bookFile = (vol, book) => `stbV${vol}-B${book}.json`
