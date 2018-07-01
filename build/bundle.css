@@ -39,23 +39,27 @@
     font-size: 14px;
     font-family: Lato;
     margin-bottom: 120px; }
-  .game-info .new-puzzle, .game-info .reset-puzzle {
+  .game-info .new-puzzle, .game-info .reset-puzzle, .game-info .solve-puzzle {
     transition: 0.3s;
     display: inline-block;
     padding: 8px 12px;
     border-radius: 6px;
     user-select: none;
     -webkit-user-select: none; }
-    .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover {
+    .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover, .game-info .solve-puzzle:hover {
       cursor: pointer; }
   .game-info .new-puzzle {
     margin-bottom: 40px; }
     .game-info .new-puzzle:hover {
       background-color: #51e373; }
   .game-info .reset-puzzle {
-    margin-bottom: 80px; }
+    margin-bottom: 40px; }
     .game-info .reset-puzzle:hover {
       background-color: #f55353; }
+  .game-info .solve-puzzle {
+    margin-bottom: 80px; }
+    .game-info .solve-puzzle:hover {
+      background-color: #7cebff; }
   .game-info .size-puzzle {
     display: inline-block;
     padding: 8px 12px;

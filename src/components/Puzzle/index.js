@@ -58,6 +58,8 @@ export default class Puzzle extends Component {
 					<br></br>
 					<div className="reset-puzzle" onClick={this.resetGame.bind(this)}>Reset</div>
 					<br></br>
+					<div className="solve-puzzle" onClick={this.solveGame.bind(this)}>Solve</div>
+					<br></br>
 					<div className="puzzle8x8 size-puzzle" onClick={() => { this.initGame('8x8').bind(this) }}>8x8</div>
 					<div className="puzzle10x10 size-puzzle" onClick={() => { this.initGame('10x10').bind(this) }}>10x10</div>
 					<div className="puzzle14x14 size-puzzle" onClick={() => { this.initGame('14x14').bind(this) }}>14x14</div>
@@ -80,6 +82,12 @@ export default class Puzzle extends Component {
 		var playData = initPlayData(this.state.pRec)
 		this.stopTimer()
 		this.setState({ playData, timerMS: 0, timerOn: false })
+	}
+
+	solveGame() {
+		this.stopTimer()
+		let { solved } = this.state.pRec.puzzle_data
+		this.setState({ playData: solved.replace(/1/g, '3'), timerMS: 0, timerOn: false })
 	}
 
 	renderPuzzlePieces(puzz, playData) {
