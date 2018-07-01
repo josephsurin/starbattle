@@ -3,40 +3,59 @@
   margin-left: 75px;
   width: 650px;
   height: 650px;
-  background-color: #fbfbfb;
+  background-color: #242427;
   border: 4px solid #a5a5a5;
   display: grid;
   user-select: none;
-  -webkit-user-select: none; }
+  -webkit-user-select: none;
+  box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1); }
   .puzzle-board .puzzle-piece {
-    border: 1px solid #d8d8d8;
+    border: 1px solid #3f3f3f;
     text-align: center; }
-    .puzzle-board .puzzle-piece .top-space {
-      width: 100%;
-      height: 33%; }
-    .puzzle-board .puzzle-piece .puzzle-piece-symbol {
-      height: 1px;
-      color: #a5a5a5; }
-      .puzzle-board .puzzle-piece .puzzle-piece-symbol .dot {
-        margin-top: 4px;
-        font-size: 16px; }
-      .puzzle-board .puzzle-piece .puzzle-piece-symbol .star {
-        margin-top: -4px;
-        font-size: 30px;
-        color: #919191; }
-      .puzzle-board .puzzle-piece .puzzle-piece-symbol .win {
-        color: #8beef4;
-        transition: 0.4s; }
-    .puzzle-board .puzzle-piece:hover {
-      cursor: pointer;
-      background-color: #d5d5d5; }
+  .puzzle-board .dot {
+    transition: 0.15s;
+    background-color: #151517; }
+  .puzzle-board .star {
+    transition: 0.15s;
+    background-color: #51e373; }
+  .puzzle-board .win {
+    transition: 0.5s;
+    background-color: #53b4ff; }
   .puzzle-board .bLeft {
-    border-left: 4px solid #a5a5a5; }
+    border-left: 3px solid #a5a5a5; }
   .puzzle-board .bUp {
-    border-top: 4px solid #a5a5a5; }
+    border-top: 3px solid #a5a5a5; }
+
+.game-info {
+  margin-top: 75px;
+  text-align: center;
+  font-family: 'Source Sans Pro';
+  font-size: 28px; }
+  .game-info .timer {
+    font-size: 64px;
+    margin-bottom: 20px;
+    margin-top: 20px; }
+  .game-info .which-puzzle {
+    font-size: 14px;
+    font-family: Lato;
+    margin-bottom: 120px; }
+  .game-info .new-puzzle, .game-info .reset-puzzle {
+    transition: 0.3s;
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px; }
+    .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover {
+      cursor: pointer; }
+  .game-info .new-puzzle {
+    margin-bottom: 40px; }
+    .game-info .new-puzzle:hover {
+      background-color: #51e373; }
+  .game-info .reset-puzzle:hover {
+    background-color: #f55353; }
 
 html, body {
-  color: #141414;
+  background-color: #1a1a1e;
+  color: #fdfdfd;
   font-family: 'Lato';
   margin: 0;
   padding: 0; }
@@ -49,4 +68,4 @@ html, body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: auto auto; }
+  grid-template-columns: 1fr 1fr; }

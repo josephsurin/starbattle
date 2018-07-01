@@ -1,18 +1,27 @@
-$bg: #fbfbfb
+$bg: #242427
 $bg-grey: #b0b0b0
 $text-light-grey: #e2e2e2
 $text-grey: #a5a5a5
 $text-black: #141414
 $text-dark-grey: #6d6d6d
 $text-white: #fdfdfd
-$red: #e82d2d
-$blue: #8beef4
 $navy: #385dab
+$white-grey: #fafafa
+$light-grey: #dadada
+$grey: #2f2f32
+$black: #1a1a1e
+$light-blue: #7cebff
+$red: #f55353
+$green: #51e373
+$blue: #53b4ff
+$yellow: #fff890
 
 @import 'puzzle'
+@import 'info'
 
 html, body
-	color: $text-black
+	background-color: $black
+	color: $text-white
 	font-family: 'Lato'
 	margin: 0
 	padding: 0
@@ -25,4 +34,4 @@ html, body
 	width: 100%
 	height: 100%
 	display: grid
-	grid-template-columns: auto auto
+	grid-template-columns: 1fr 1fr
