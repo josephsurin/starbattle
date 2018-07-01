@@ -16,6 +16,8 @@ $green: #51e373
 $blue: #53b4ff
 $yellow: #fff890
 
+$mobile-width: 1000px
+
 @import 'puzzle'
 @import 'info'
 
@@ -35,3 +37,8 @@ html, body
 	height: 100%
 	display: grid
 	grid-template-columns: 1fr 1fr
+
+@media (max-width: $mobile-width)
+	.home-wrapper
+		width: 100vw
+		grid-template-columns: 100vw

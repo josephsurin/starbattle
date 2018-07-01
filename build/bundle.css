@@ -26,6 +26,13 @@
   .puzzle-board .bUp {
     border-top: 3px solid #e5e5e5; }
 
+@media (max-width: 1000px) {
+  .puzzle-board {
+    margin-top: 1vw;
+    margin-left: 1vw;
+    width: 97vw;
+    height: 97vw; } }
+
 .game-info {
   margin-top: 75px;
   text-align: center;
@@ -79,6 +86,16 @@
   .game-info .puzzle14x14:hover {
     background-color: #f55353; }
 
+@media (max-width: 1000px) {
+  .game-info {
+    margin-top: 10px; }
+    .game-info .which-puzzle, .game-info .new-puzzle, .game-info .reset-puzzle {
+      margin-bottom: 24px; }
+    .game-info .solve-puzzle {
+      margin-bottom: 30px; }
+    .game-info .puzzle8x8, .game-info .puzzle10x10, .game-info .puzzle14x14 {
+      margin-bottom: 20px; } }
+
 html, body {
   background-color: #1a1a1e;
   color: #fdfdfd;
@@ -95,3 +112,8 @@ html, body {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 1000px) {
+  .home-wrapper {
+    width: 100vw;
+    grid-template-columns: 100vw; } }
