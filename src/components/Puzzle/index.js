@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
-import { bookFile, initPlayData, msFormat } from '../../util/util'
+import { bookFile, initPlayData, msFormat, rand, randSize } from '../../util/util'
+
+const minVol = 1
+const maxVol = 2
+const minBook = 1
+const maxBook = 100
+const minPuzzleNo = 0
+const maxPuzzleNo = size => size == '14x14' ? 11 : 23
 
 String.prototype.replaceAt=function(index, replacement) { //https://stackoverflow.com/a/1431113
 	return this.substr(0, index) + replacement+ this.substr(index + replacement.length)
@@ -9,42 +16,51 @@ String.prototype.replaceAt=function(index, replacement) { //https://stackoverflo
 export default class Puzzle extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			vol: 1,
-			book: 1,
-			puzzleNo: 0,
-			puzzleBookFile: bookFile(1,1),
-			pRec: {},
-			playData: '',
-			timerMS: 0
-		}
+		this.state = this.initialState('random')
 
 		this.timerInterval = null
 	}
 
 	componentWillMount() {
-		var bookData = require(`../../data/${this.state.puzzleBookFile}`)
-		var playData = initPlayData(bookData[this.state.puzzleNo])
-		this.setState({ pRec: bookData[this.state.puzzleNo], playData })
-		this.startTimer()
+		this.initGame()
+	}
+
+	initGame(size='random') {
+		if(this.state.timerOn) this.stopTimer()
+		this.setState(this.initialState(size))
 	}
 	
+	initialState(uSize) {
+		var size = uSize == 'random' ? randSize() : uSize
+		var vol = rand(minVol, maxVol)
+		var book = rand(minBook, maxBook)
+		var puzzleNo = rand(minPuzzleNo, maxPuzzleNo(size))
+		var puzzleBookFile = bookFile(size, vol, book)
+		var bookData = require(`../../data/${puzzleBookFile}`)
+		var playData = initPlayData(bookData[puzzleNo])
+		var pRec = bookData[puzzleNo]
+		return { size, vol, book, puzzleNo, puzzleBookFile, pRec, playData, timerMS: 0, timerOn: false }
+	}
 
 	render() {
 		let { puzz } = this.state.pRec.puzzle_data
-		let { playData, vol, book, puzzleNo, timerMS } = this.state
-		var size = Math.sqrt(puzz.length)
+		let { playData, size, vol, book, puzzleNo, timerMS } = this.state
+		var sizeN = Math.sqrt(puzz.length)
 		return (
 			<React.Fragment>
-				<div className="puzzle-board" style={{ 'gridTemplateColumns': `repeat(${size}, 1fr)`  }}>
+				<div className="puzzle-board" style={{ 'gridTemplateColumns': `repeat(${sizeN}, 1fr)`  }}>
 					{this.renderPuzzlePieces(puzz, playData)}
 				</div>
 				<div className="game-info">
 					<div className="timer">{msFormat(timerMS)}</div>
-					<div className="which-puzzle">Volume {vol}, Book {book}, Puzzle {puzzleNo+1}</div>
-					<div className="new-puzzle">New Puzzle</div>
+					<div className="which-puzzle">{size}, Volume {vol}, Book {book}, Puzzle {puzzleNo+1}</div>
+					<div className="new-puzzle" onClick={() => { this.initGame().bind(this) }}>Random Puzzle</div>
 					<br></br>
 					<div className="reset-puzzle" onClick={this.resetGame.bind(this)}>Reset</div>
+					<br></br>
+					<div className="puzzle8x8 size-puzzle" onClick={() => { this.initGame('8x8').bind(this) }}>8x8</div>
+					<div className="puzzle10x10 size-puzzle" onClick={() => { this.initGame('10x10').bind(this) }}>10x10</div>
+					<div className="puzzle14x14 size-puzzle" onClick={() => { this.initGame('14x14').bind(this) }}>14x14</div>
 				</div>
 			</React.Fragment>
 		)
@@ -62,7 +78,8 @@ export default class Puzzle extends Component {
 
 	resetGame() {
 		var playData = initPlayData(this.state.pRec)
-		this.setState({ playData })
+		this.stopTimer()
+		this.setState({ playData, timerMS: 0, timerOn: false })
 	}
 
 	renderPuzzlePieces(puzz, playData) {
@@ -79,26 +96,25 @@ export default class Puzzle extends Component {
 				hasUp = puzz[i-size] != puzz[i]
 			}
 			var classname = 'puzzle-piece'+ (hasLeft ? ' bLeft' : '') + (hasUp ? ' bUp' : '') + codeToSymbol(playData[i])
-			return (
-				<div key={i} className={classname} onClick={() => { this.clickPiece(i) }}>
-				</div>)
+			return <div key={i} className={classname} onClick={() => { this.clickPiece(i) }}></div>
 		})
 
 		function codeToSymbol(code) {
 			var symbol = ''
 			switch(code) {
-			// case '1': symbol = <i className="material-icons dot">brightness_1</i>; break
-			// case '2': symbol = <i className="material-icons star">star</i>; break
-			// case 'W': symbol = <i className="material-icons star win">star</i>
 			case '1': symbol = ' dot'; break
 			case '2': symbol = ' star'; break
-			case 'W': symbol = ' star win'
+			case '3': symbol = ' star win'
 			}
 			return symbol
 		}
 	}
 
 	clickPiece(i) {
+		if(!this.state.timerOn) {
+			this.startTimer()
+			this.setState({ timerOn: true })
+		}
 		var playDataT = this.state.playData
 		playDataT = playDataT.replaceAt(i, ((playDataT[i] + 1) % 3).toString()) 
 		this.setState({ playData: playDataT })
@@ -109,9 +125,9 @@ export default class Puzzle extends Component {
 		let { solved } = this.state.pRec.puzzle_data
 		var playDataT = playData.replace(/1/g, '0').replace(/2/g, '1')
 		if(solved == playDataT) { //win
-			playDataT = playData.replace(/2/g, 'W')
-			console.log(playDataT)
-			this.setState({ playData: playDataT })
+			this.stopTimer()
+			playDataT = playData.replace(/2/g, '3')
+			this.setState({ playData: playDataT, timerOn: false })
 		}
 	}
 }

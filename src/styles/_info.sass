@@ -16,6 +16,8 @@
 		display: inline-block
 		padding: 8px 12px
 		border-radius: 6px
+		user-select: none
+		-webkit-user-select: none
 		&:hover
 			cursor: pointer
 	.new-puzzle
@@ -23,5 +25,27 @@
 		&:hover
 			background-color: $green
 	.reset-puzzle
+		margin-bottom: 80px
+		&:hover
+			background-color: $red
+	.size-puzzle
+		display: inline-block
+		padding: 8px 12px
+		margin: 0 18px
+		font-size: 24px
+		border-radius: 6px
+		width: 80px
+		user-select: none
+		-webkit-user-select: none
+		transition: 0.3s
+		&:hover
+			cursor: pointer
+	.puzzle8x8
+		&:hover
+			background-color: $yellow
+	.puzzle10x10
+		&:hover
+			background-color: $green
+	.puzzle14x14
 		&:hover
 			background-color: $red

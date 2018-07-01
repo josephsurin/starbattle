@@ -10,7 +10,7 @@
   -webkit-user-select: none;
   box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1); }
   .puzzle-board .puzzle-piece {
-    border: 1px solid #3f3f3f;
+    border: 1px solid #323232;
     text-align: center; }
   .puzzle-board .dot {
     transition: 0.15s;
@@ -22,9 +22,9 @@
     transition: 0.5s;
     background-color: #53b4ff; }
   .puzzle-board .bLeft {
-    border-left: 3px solid #a5a5a5; }
+    border-left: 3px solid #e5e5e5; }
   .puzzle-board .bUp {
-    border-top: 3px solid #a5a5a5; }
+    border-top: 3px solid #e5e5e5; }
 
 .game-info {
   margin-top: 75px;
@@ -43,14 +43,36 @@
     transition: 0.3s;
     display: inline-block;
     padding: 8px 12px;
-    border-radius: 6px; }
+    border-radius: 6px;
+    user-select: none;
+    -webkit-user-select: none; }
     .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover {
       cursor: pointer; }
   .game-info .new-puzzle {
     margin-bottom: 40px; }
     .game-info .new-puzzle:hover {
       background-color: #51e373; }
-  .game-info .reset-puzzle:hover {
+  .game-info .reset-puzzle {
+    margin-bottom: 80px; }
+    .game-info .reset-puzzle:hover {
+      background-color: #f55353; }
+  .game-info .size-puzzle {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 18px;
+    font-size: 24px;
+    border-radius: 6px;
+    width: 80px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: 0.3s; }
+    .game-info .size-puzzle:hover {
+      cursor: pointer; }
+  .game-info .puzzle8x8:hover {
+    background-color: #fff890; }
+  .game-info .puzzle10x10:hover {
+    background-color: #51e373; }
+  .game-info .puzzle14x14:hover {
     background-color: #f55353; }
 
 html, body {
