@@ -45,26 +45,30 @@
   .game-info .which-puzzle {
     font-size: 14px;
     font-family: Lato;
-    margin-bottom: 120px; }
-  .game-info .new-puzzle, .game-info .reset-puzzle, .game-info .solve-puzzle {
+    margin-bottom: 70px; }
+  .game-info .new-puzzle, .game-info .reset-puzzle, .game-info .solve-puzzle, .game-info .select-puzzle {
     transition: 0.3s;
     display: inline-block;
     padding: 8px 12px;
     border-radius: 6px;
     user-select: none;
     -webkit-user-select: none; }
-    .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover, .game-info .solve-puzzle:hover {
+    .game-info .new-puzzle:hover, .game-info .reset-puzzle:hover, .game-info .solve-puzzle:hover, .game-info .select-puzzle:hover {
       cursor: pointer; }
   .game-info .new-puzzle {
-    margin-bottom: 40px; }
+    margin-bottom: 30px; }
     .game-info .new-puzzle:hover {
       background-color: #51e373; }
   .game-info .reset-puzzle {
-    margin-bottom: 40px; }
+    margin-bottom: 30px; }
     .game-info .reset-puzzle:hover {
       background-color: #f55353; }
+  .game-info .select-puzzle {
+    margin-bottom: 30px; }
+    .game-info .select-puzzle:hover {
+      background-color: #385dab; }
   .game-info .solve-puzzle {
-    margin-bottom: 80px; }
+    margin-bottom: 60px; }
     .game-info .solve-puzzle:hover {
       background-color: #7cebff; }
   .game-info .size-puzzle {
@@ -89,7 +93,7 @@
 @media (max-width: 1000px) {
   .game-info {
     margin-top: 10px; }
-    .game-info .which-puzzle, .game-info .new-puzzle, .game-info .reset-puzzle {
+    .game-info .which-puzzle, .game-info .new-puzzle, .game-info .reset-puzzle, .game-info .select-puzzle {
       margin-bottom: 24px; }
     .game-info .solve-puzzle {
       margin-bottom: 30px; }

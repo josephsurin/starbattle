@@ -10,8 +10,8 @@
 	.which-puzzle
 		font-size: 14px
 		font-family: Lato
-		margin-bottom: 120px
-	.new-puzzle, .reset-puzzle, .solve-puzzle
+		margin-bottom: 70px
+	.new-puzzle, .reset-puzzle, .solve-puzzle, .select-puzzle
 		transition: 0.3s
 		display: inline-block
 		padding: 8px 12px
@@ -21,15 +21,19 @@
 		&:hover
 			cursor: pointer
 	.new-puzzle
-		margin-bottom: 40px
+		margin-bottom: 30px
 		&:hover
 			background-color: $green
 	.reset-puzzle
-		margin-bottom: 40px
+		margin-bottom: 30px
 		&:hover
 			background-color: $red
+	.select-puzzle
+		margin-bottom: 30px
+		&:hover
+			background-color: $navy
 	.solve-puzzle
-		margin-bottom: 80px
+		margin-bottom: 60px
 		&:hover
 			background-color: $light-blue
 	.size-puzzle
@@ -57,7 +61,7 @@
 @media (max-width: $mobile-width)
 	.game-info
 		margin-top: 10px
-		.which-puzzle, .new-puzzle, .reset-puzzle
+		.which-puzzle, .new-puzzle, .reset-puzzle, .select-puzzle
 			margin-bottom: 24px
 		.solve-puzzle
 			margin-bottom: 30px

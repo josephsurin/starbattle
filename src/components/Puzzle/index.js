@@ -30,11 +30,11 @@ export default class Puzzle extends Component {
 		this.setState(this.initialState(size))
 	}
 	
-	initialState(uSize) {
+	initialState(uSize, v, b, p) {
 		var size = uSize == 'random' ? randSize() : uSize
-		var vol = rand(minVol, maxVol)
-		var book = rand(minBook, maxBook)
-		var puzzleNo = rand(minPuzzleNo, maxPuzzleNo(size))
+		var vol = v || rand(minVol, maxVol)
+		var book = b || rand(minBook, maxBook)
+		var puzzleNo = p || rand(minPuzzleNo, maxPuzzleNo(size))
 		var puzzleBookFile = bookFile(size, vol, book)
 		var bookData = require(`../../data/${puzzleBookFile}`)
 		var playData = initPlayData(bookData[puzzleNo])
@@ -53,8 +53,10 @@ export default class Puzzle extends Component {
 				</div>
 				<div className="game-info">
 					<div className="timer">{msFormat(timerMS)}</div>
-					<div className="which-puzzle">{size}, Volume {vol}, Book {book}, Puzzle {puzzleNo+1}</div>
+					<div className="which-puzzle">{size}, Volume {vol}, Book {book}, Puzzle {parseInt(puzzleNo)+1}</div>
 					<div className="new-puzzle" onClick={() => { this.initGame().bind(this) }}>Random Puzzle</div>
+					<br></br>
+					<div className="select-puzzle" onClick={() => { this.selectPuzzle().bind(this) }}>Select Puzzle</div>
 					<br></br>
 					<div className="reset-puzzle" onClick={this.resetGame.bind(this)}>Reset</div>
 					<br></br>
@@ -88,6 +90,13 @@ export default class Puzzle extends Component {
 		this.stopTimer()
 		let { solved } = this.state.pRec.puzzle_data
 		this.setState({ playData: solved.replace(/1/g, '3'), timerMS: 0, timerOn: false })
+	}
+
+	selectPuzzle() {
+		var puzzleSyntax = prompt('Enter a puzzle in the form SIZE;VOL;BOOK;PUZZLENO-1', '8x8;1;1;0')
+		let [size, vol, book, puzzleNo] = puzzleSyntax.split(';')
+		console.log(puzzleNo)
+		this.setState(this.initialState(size, vol, book, puzzleNo))
 	}
 
 	renderPuzzlePieces(puzz, playData) {
